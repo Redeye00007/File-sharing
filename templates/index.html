@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUBG File Share</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1 class="title">PUBG FILE SERVER</h1>
+        <form method="POST" enctype="multipart/form-data" class="upload-box">
+            <input type="file" name="file" required>
+            <button type="submit">UPLOAD</button>
+        </form>
+        <div class="file-list">
+            <h2>Uploaded Files</h2>
+            <ul>
+                {% for file in files %}
+                <li><a href="/uploads/{{ file }}" target="_blank">{{ file }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
