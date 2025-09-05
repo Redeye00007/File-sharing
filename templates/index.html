@@ -1,28 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUBG File Share</title>
-    <link rel="stylesheet" href="/static/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <title>File Upload & Download</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h2 { margin-top: 30px; }
+        .file-list { margin-top: 15px; }
+        .file-item { margin-bottom: 10px; }
+        .download-btn {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .download-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <div class="overlay"></div>
-    <div class="container">
-        <h1 class="title">RedEyE's FILE SERVER</h1>
-        <form method="POST" enctype="multipart/form-data" class="upload-box">
-            <input type="file" name="file" required>
-            <button type="submit">UPLOAD</button>
-        </form>
-        <div class="file-list">
-            <h2>Uploaded Files</h2>
-            <ul>
-                {% for file in files %}
-                <li><a href="/uploads/{{ file }}" target="_blank">{{ file }}</a></li>
-                {% endfor %}
-            </ul>
-        </div>
+    <h2>Upload a File</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+
+    <h2>Available Files</h2>
+    <div class="file-list">
+        {% for file in files %}
+            <div class="file-item">
+                {{ file }}
+                <a href="{{ url_for('uploaded_file', filename=file) }}" class="download-btn" download>Download</a>
+            </div>
+        {% endfor %}
     </div>
 </body>
 </html>
