@@ -2,24 +2,7 @@
 <html>
 <head>
     <title>File Upload & Download</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        h2 { margin-top: 30px; }
-        .file-list { margin-top: 15px; }
-        .file-item { margin-bottom: 10px; }
-        .download-btn {
-            padding: 5px 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .download-btn:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h2>Upload a File</h2>
@@ -33,7 +16,7 @@
         {% for file in files %}
             <div class="file-item">
                 {{ file }}
-                <a href="{{ url_for('uploaded_file', filename=file) }}" class="download-btn" download>Download</a>
+                <a href="{{ url_for('uploaded_file', filename=file) }}" class="download-btn">Download</a>
             </div>
         {% endfor %}
     </div>
