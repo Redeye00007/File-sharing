@@ -2,23 +2,26 @@
 <html>
 <head>
     <title>File Upload & Download</title>
+    <!-- CSS load from static folder -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h2>Upload a File</h2>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <input type="submit" value="Upload">
-    </form>
+    <div class="container">
+        <h2>Upload a File</h2>
+        <form method="POST" enctype="multipart/form-data" class="upload-form">
+            <input type="file" name="file">
+            <input type="submit" value="Upload">
+        </form>
 
-    <h2>Available Files</h2>
-    <div class="file-list">
-        {% for file in files %}
-            <div class="file-item">
-                {{ file }}
-                <a href="{{ url_for('uploaded_file', filename=file) }}" class="download-btn">Download</a>
-            </div>
-        {% endfor %}
+        <h2>Available Files</h2>
+        <div class="file-list">
+            {% for file in files %}
+                <div class="file-item">
+                    <span>{{ file }}</span>
+                    <a href="{{ url_for('uploaded_file', filename=file) }}" class="download-btn">Download</a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>
